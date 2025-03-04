@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-const serSchema = new mongoose.Schema(
+import bcrypt from "bcryptjs";
+
+// Definição do esquema do usuário
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: [true, "Nome é obrigatório"],
     },
     email: {
+      type: String, // Adicionado o tipo para o campo `email`
       required: [true, "Email é obrigatório"],
       unique: true,
       lowercase: true,
-      trim,
+      trim: true,
     },
     password: {
       type: String,
@@ -36,12 +39,11 @@ const serSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Adiciona campos `createdAt` e `updatedAt`
   }
 );
 
-const User = mongoose.model("User", serSchema);
-
+// Middleware para hash da senha antes de salvar
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -54,12 +56,16 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+// Método para comparar senhas
 userSchema.methods.comparePassword = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
   } catch (error) {
-    throw new Error(error);
+    throw new Error("Erro ao comparar senhas");
   }
 };
+
+// Criação do modelo de usuário
+const User = mongoose.model("User", userSchema);
 
 export default User;
