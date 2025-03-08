@@ -22,13 +22,13 @@ const setCookies = (res, accessToken, refreshToken) => {
     res.cookie("access_token", accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+         sameSite: process.env.NODE_ENV === "production" ? "strict" : "Lax",
         maxAge: 15 * 60 * 1000, // 15 minutos
     });
     res.cookie("refresh_token", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+         sameSite: process.env.NODE_ENV === "production" ? "strict" : "Lax",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 dias
     });
 };
