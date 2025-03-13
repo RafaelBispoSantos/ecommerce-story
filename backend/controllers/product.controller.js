@@ -40,10 +40,15 @@ export const createProduct = async (req, res) => {
   try {
     const { name, description, price, image, category } = req.body;
 
-    let claudinaryResponse = null;
+    let cloudinaryResponse = null;
+
+    // Validar tamanho da imagem
+    if (image && image.size > 10 * 1024 * 1024) { // 10MB
+      return res.status(400).json({ message: "Image size exceeds the 10MB limit" });
+    }
 
     if (image) {
-      claudinaryResponse = await cloudinary.uploader.upload(image, {
+      cloudinaryResponse = await cloudinary.uploader.upload(image, { 
         folder: "products",
       });
     }
@@ -52,8 +57,8 @@ export const createProduct = async (req, res) => {
       name,
       description,
       price,
-      iamge: claudinaryResponse?.secure_url
-        ? claudinaryResponse.secure_url
+      image: cloudinaryResponse?.secure_url
+        ? cloudinaryResponse.secure_url
         : "",
       category,
     });
@@ -63,7 +68,6 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
