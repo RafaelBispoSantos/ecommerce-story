@@ -5,12 +5,15 @@
   </a>
   <br />
 
-  <div>
-    <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logo=vite&logoColor=FFD62E&color=646CFF" alt="Vite" />
-    <img src="https://img.shields.io/badge/-React-black?style=for-the-badge&logo=react&logoColor=61DAFB&color=20232A" alt="React" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logo=tailwindcss&logoColor=white&color=06B6D4" alt="Tailwind CSS" />
-    <img src="https://img.shields.io/badge/-Stripe-black?style=for-the-badge&logo=stripe&logoColor=635BFF&color=635BFF" alt="Stripe" />
-    <img src="https://img.shields.io/badge/-Node.js-black?style=for-the-badge&logo=node.js&logoColor=white&color=339933" alt="Node.js" />
+<div>
+    <img src="https://img.shields.io/badge/-React-000000?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/-Vite-000000?style=for-the-badge&logo=vite&logoColor=646CFF" alt="Vite" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-000000?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/-Node.js-000000?style=for-the-badge&logo=node.js&logoColor=339933" alt="Node.js" />
+    <img src="https://img.shields.io/badge/-Express-000000?style=for-the-badge&logo=express&logoColor=FFFFFF" alt="Express" />
+    <img src="https://img.shields.io/badge/-MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=47A248" alt="MongoDB" />
+    <img src="https://img.shields.io/badge/-Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+    <img src="https://img.shields.io/badge/-Stripe-000000?style=for-the-badge&logo=stripe&logoColor=008CDD" alt="Stripe" />
   </div>
 
   <h3 align="center">Ecommerce Story - Plataforma de E-commerce </h3>
