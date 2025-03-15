@@ -11,6 +11,8 @@ import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
 import { Car } from "lucide-react";
 import CartPage from "./pages/CartPage";
+import PurchaseCancelPage from "./pages/PurchaseCancelPage";
+import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
 
 function App() {
   const { user, checkAuth,initializingAuth  } = useUserStore();
@@ -56,6 +58,11 @@ console.log(initializingAuth);
             path="/cart"
             element={user ? <CartPage /> : <Navigate to="/login" />}
           />
+          <Route
+						path='/purchase-success'
+						element={<PurchaseSuccessPage /> }
+					/>
+					<Route path='/purchase-cancel' element={user ? <PurchaseCancelPage /> : <Navigate to='/login' />} />
         </Routes>
       </div>
       <Toaster />
