@@ -8,6 +8,9 @@ import { useUserStore } from "./stores/useUserStore";
 import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
 import AdminPage from "./pages/AdminPage";
+import CategoryPage from "./pages/CategoryPage";
+import { Car } from "lucide-react";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const { user, checkAuth,initializingAuth  } = useUserStore();
@@ -17,7 +20,7 @@ function App() {
   }, [checkAuth]);
 
 
-
+console.log(initializingAuth);
 
 
   return (
@@ -44,6 +47,14 @@ function App() {
           <Route
             path="/secret-dashboard"
             element={user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/category/:category"
+            element={<CategoryPage/>}
+          />
+          <Route
+            path="/cart"
+            element={user ? <CartPage /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>
