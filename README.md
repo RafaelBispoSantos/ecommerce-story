@@ -13,39 +13,44 @@
     <img src="https://img.shields.io/badge/-Node.js-black?style=for-the-badge&logo=node.js&logoColor=white&color=339933" alt="Node.js" />
   </div>
 
-  <h3 align="center">Ecommerce Story - Plataforma de E-commerce com Storytelling</h3>
+  <h3 align="center">Ecommerce Story - Plataforma de E-commerce </h3>
 </div>
 
 ---
 
 ## 🎓 O que aprendi neste projeto
 
-### Arquitetura & Performance
-- Criação de uma **plataforma de e-commerce** escalável utilizando uma abordagem modular.
-- Utilização do **Vite** para desenvolvimento rápido e build otimizado.
-- Implementação de **upload de arquivos** com Multer para gerenciamento de mídias dos produtos.
+### Desenvolvimento Backend Robusto
+- **Autenticação e Autorização:** Implementação de autenticação segura com JWT e gerenciamento de permissões de usuário.
+- **Gerenciamento de Produtos:** CRUD completo para produtos, incluindo upload de imagens com Cloudinary.
+- **Processamento de Pagamentos:** Integração com a API do Stripe para transações seguras.
+- **Gerenciamento de Pedidos:** Fluxo completo de pedidos, desde a criação até o acompanhamento do status.
+- **Caching e Sessões com Redis:** Utilização do Redis (via ioredis) para caching estratégico, gerenciamento de sessões e análise em tempo real, melhorando a performance da aplicação.
 
-### Integrações & Funcionalidades
-- Integração segura com **Stripe** para processamento de pagamentos.
-- Gerenciamento de estado global com **Zustand** e comunicação via **Axios** com a API.
-- Animações e transições suaves utilizando **Framer Motion** para melhorar a experiência do usuário.
-- Criação de gráficos e dashboards com **Recharts** para análise de vendas e métricas.
+### Desenvolvimento Frontend Moderno
+- **Configuração de Ambiente:** Utilização do Vite para um ambiente de desenvolvimento rápido e eficiente.
+- **Componentização com React:** Criação de componentes reutilizáveis para uma interface de usuário dinâmica.
+- **Estilização com Tailwind CSS:** Aplicação de classes utilitárias para um design responsivo e moderno.
+- **Gerenciamento de Estado:** Utilização de bibliotecas como Zustand para gerenciamento eficiente do estado global.
 
-### Fluxos de Trabalho e Boas Práticas
-- Adoção de **componentes funcionais** e hooks do React para um código limpo e moderno.
-- Configuração de **linting** e boas práticas de código com ESLint.
-- Estrutura modular separando o **backend** e o **frontend** para facilitar a manutenção.
+### Integrações e Funcionalidades Avançadas
+- **Upload de Arquivos:** Gerenciamento de uploads de imagens e outros arquivos com Multer.
+- **Animações e Interatividade:** Melhoria da experiência do usuário com animações utilizando Framer Motion.
+- **Notificações:** Feedback instantâneo ao usuário com React Hot Toast.
 
 ---
 
-## 🛠️ Principais Tecnologias Dominadas
 
-| Categoria      | Tecnologias                                                                                   |
-|----------------|-----------------------------------------------------------------------------------------------|
-| **Frontend**   | Vite, React 19, Tailwind CSS, Framer Motion, React Router DOM, React Hot Toast, Recharts, Axios |
-| **Backend**    | Node.js, Express, Multer, Stripe, JWT (para autenticação)                                     |
-| **DevOps**     | Gerenciamento via Git, scripts npm para desenvolvimento e build                               |
-| **Ferramentas**| VSCode, Postman, Docker (opcional), GitHub Actions (CI/CD)                                      |
+## 🛠️ Principais Tecnologias Utilizadas
+
+| Categoria           | Tecnologias                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Frontend**        | React 19, Vite 6, Tailwind CSS 4, React Router 7                            |
+| **Backend**         | Node.js, Express.js, Mongoose, JWT                                          |
+| **Banco de Dados**  | MongoDB                                                                     |
+| **Cache & Sessões** | Redis (ioredis)                                                             |
+| **Integrações**     | Stripe, Cloudinary, Multer, Framer Motion, React Confetti, React Hot Toast    |
+| **Gerenciamento**   | Zustand                                                                     |
 
 ---
 
@@ -60,13 +65,22 @@
 
 ### Funcionalidades Avançadas
 - **Animações e Transições:** Experiência de usuário aprimorada com Framer Motion.
+- **Caching Estratégico com Redis:** Redução de latência e aumento da performance com armazenamento em memória.
+- **Notificações:** Feedback instantâneo ao usuário com React Hot Toast.
+- **Upload de Imagens:** Upload e gerenciamento de imagens de produtos com Cloudinary.
 - **Upload de Mídia:** Suporte a upload de imagens e vídeos para produtos usando Multer.
 - **Dashboard Analítico:** Visualização de métricas e gráficos com Recharts.
 - **Gerenciamento de Estado:** Uso de Zustand para sincronização de dados em tempo real.
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- **Node.js:** Certifique-se de ter o Node.js instalado na versão mais recente.
+- **Gerenciador de Pacotes:** Utilize npm ou yarn conforme sua preferência.
+- **MongoDB:** Tenha uma instância do MongoDB em execução.
+- **Redis:** Garanta que o Redis esteja acessível (localmente ou via serviço).
 
 ### Clonando o Repositório
 
@@ -96,25 +110,54 @@ Crie um arquivo .env na raiz de cada pasta e adicione as variáveis necessárias
 
 Exemplo para o Backend:
 ```bash
-PORT=5000
-DATABASE_URL=your_database_connection_string
-JWT_SECRET=your_jwt_secret_key
-STRIPE_SECRET_KEY=your_stripe_secret_key
-```
-Exemplo para o Frontend (se necessário):
-```bash
-VITE_API_ENDPOINT=http://localhost:5000/api
-VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
+PORT=4000
+MONGO_URI=sua_string_de_conexão_mongodb
+JWT_SECRET=sua_chave_secreta_jwt
+STRIPE_API_KEY=sua_chave_api_stripe
+CLOUDINARY_NAME=seu_nome_cloudinary
+CLOUDINARY_API_KEY=sua_chave_api_cloudinary
+CLOUDINARY_API_SECRET=sua_chave_secreta_cloudinary
+REDIS_URI=sua_string_de_conexão_redis
 ```
 Abra http://localhost:3000 no navegador para visualizar a aplicação.
 
 ## 📚 Recursos e Documentação
 
-- [Documentação do Vite](https://vitejs.dev/)
-- [Guia do React](https://reactjs.org/)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Stripe API Reference](https://stripe.com/docs/api)
-- [Express.js Guide](https://expressjs.com/)
+- **[Documentação do React](https://reactjs.org/docs/getting-started.html)**  
+  Guia oficial para começar com React, incluindo conceitos fundamentais e tutoriais.
+
+- **[Guia do Vite](https://vitejs.dev/guide/)**  
+  Documentação do Vite, uma ferramenta de build rápida para projetos web modernos.
+
+- **[Tailwind CSS Docs](https://tailwindcss.com/docs)**  
+  Referência completa para utilizar as classes utilitárias do Tailwind CSS.
+
+- **[Express.js Documentation](https://expressjs.com/)**  
+  Guia oficial do Express.js, um framework web para Node.js.
+
+- **[Mongoose Documentation](https://mongoosejs.com/docs/)**  
+  Documentação do Mongoose, uma biblioteca de modelagem de dados para MongoDB e Node.js.
+
+- **[Stripe API Reference](https://stripe.com/docs/api)**  
+  Referência da API do Stripe para integração de pagamentos.
+
+- **[Cloudinary Documentation](https://cloudinary.com/documentation)**  
+  Guia para utilizar os serviços de gerenciamento de mídia do Cloudinary.
+
+- **[Multer Documentation](https://github.com/expressjs/multer)**  
+  Documentação do Multer, um middleware para manipulação de multipart/form-data em Node.js.
+
+- **[ioredis Documentation](https://github.com/luin/ioredis)**  
+  Guia para utilizar o ioredis, um cliente Redis para Node.js.
+
+- **[Framer Motion Docs](https://www.framer.com/motion/)**  
+  Documentação do Framer Motion, uma biblioteca de animações para React.
+
+- **[Zustand Documentation](https://docs.pmnd.rs/zustand/getting-started/introduction)**  
+  Guia para começar com Zustand, uma biblioteca de gerenciamento de estado para React.
+
+- **[React Router Docs](https://reactrouter.com/en/main)**  
+  Documentação do React Router para navegação em aplicações React.
 
 ## 📢 Contribuições
 
