@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "build": "cd frontend && npm install --force && npm run build"
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
