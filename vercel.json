@@ -5,7 +5,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/backend/server.js"
+      "dest": "/api"
     },
     {
       "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|webp))",
