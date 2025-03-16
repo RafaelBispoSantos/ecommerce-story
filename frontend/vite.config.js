@@ -1,20 +1,20 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import autoprefixer from 'autoprefixer'; // Importe o autoprefixer
+import { defineConfig } from "vite";
+
+// Remova temporariamente o import do plugin React
+// import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],
+  // Use uma verificação condicional para o plugin
+  plugins: [], 
   css: {
     postcss: {
-      plugins: [
-        autoprefixer(), // Adicione o autoprefixer
-      ],
+      plugins: [],  // Configuração mínima de PostCSS sem autoprefixer
     },
-  },
+  },// Temporariamente vazio para o deploy
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
+      "/api": {
+        target: "http://localhost:5000",
       },
     },
   },
