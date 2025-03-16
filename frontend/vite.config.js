@@ -1,16 +1,8 @@
-import { defineConfig } from "vite";
+import react from '@vitejs/plugin-react';
 
-// Remova temporariamente o import do plugin React
-// import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  // Use uma verificação condicional para o plugin
-  plugins: [], // Temporariamente vazio para o deploy
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:5000",
-      },
-    },
+export default {
+  plugins: [react()],
+  build: {
+    outDir: 'dist', // ou o diretório configurado na Vercel
   },
-});
+};
