@@ -28,14 +28,6 @@ if (!fs.existsSync(frontendPackageJsonPath)) {
   process.exit(1);
 }
 
-// Listar arquivos no diretório frontend para diagnóstico
-console.log('📋 Listando arquivos no diretório frontend:');
-try {
-  execSync('dir', { cwd: frontendDir, stdio: 'inherit' }); // Para Windows
-} catch (error) {
-  console.error('⚠️ Erro ao listar arquivos');
-}
-
 // Criar arquivo .npmrc para resolver problemas de compatibilidade
 console.log('📝 Criando arquivo .npmrc para resolver problemas de compatibilidade...');
 const npmrcContent = `legacy-peer-deps=true
@@ -55,13 +47,13 @@ try {
   process.exit(1);
 }
 
-// Instalar autoprefixer e postcss explicitamente
-console.log('🔧 Instalando autoprefixer e postcss explicitamente...');
+// Instalar pacotes específicos necessários para o build
+console.log('🔧 Instalando pacotes específicos necessários para o build...');
 try {
-  execSync('npm install autoprefixer postcss --save-dev', { cwd: frontendDir, stdio: 'inherit' });
-  console.log('✅ Autoprefixer e PostCSS instalados com sucesso');
+  execSync('npm install @vitejs/plugin-react vite autoprefixer postcss tailwindcss --save-dev', { cwd: frontendDir, stdio: 'inherit' });
+  console.log('✅ Pacotes específicos instalados com sucesso');
 } catch (error) {
-  console.error('⚠️ Aviso ao instalar autoprefixer:', error.message);
+  console.error('⚠️ Aviso ao instalar pacotes específicos:', error.message);
   // Continue mesmo se houver erro aqui
 }
 
@@ -69,7 +61,7 @@ try {
 const postcssConfigPath = path.join(frontendDir, 'postcss.config.js');
 if (!fs.existsSync(postcssConfigPath)) {
   console.log('📝 Criando configuração mínima de PostCSS...');
-  const postcssConfig = `export default {
+  const postcssConfig = `module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
@@ -78,32 +70,60 @@ if (!fs.existsSync(postcssConfigPath)) {
   fs.writeFileSync(postcssConfigPath, postcssConfig);
 }
 
-// Criar configuração mínima do Vite
-console.log('📝 Criando configuração mínima do Vite...');
-const minimalViteConfig = `import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  css: {
-    postcss: {
-      plugins: [],  // Configuração mínima de PostCSS sem autoprefixer
-    },
-  },
-});`;
-fs.writeFileSync(path.join(frontendDir, 'vite.config.minimal.js'), minimalViteConfig);
-
-// Executar build do frontend com configuração mínima
-console.log('🏗️ Executando build do frontend com configuração mínima...');
+// Usar o vite.config.js existente em vez de criar um novo
+console.log('🏗️ Executando build do frontend com configuração existente...');
 try {
-  execSync('npx vite build --config vite.config.minimal.js', { cwd: frontendDir, stdio: 'inherit' });
+  execSync('npm run build', { cwd: frontendDir, stdio: 'inherit' });
   console.log('✅ Build do frontend concluído com sucesso');
 } catch (error) {
-  console.error('❌ Erro ao executar build do frontend:');
-  console.error('Mensagem do erro:', error.message);
-  console.error('Saída padrão (stdout):', error.stdout?.toString() || 'Nenhum stdout disponível');
-  console.error('Saída de erro (stderr):', error.stderr?.toString() || 'Nenhum stderr disponível');
-  process.exit(1);
+  console.error('❌ Erro ao executar build com configuração existente. Tentando com configuração mínima...');
+  
+  // Criar configuração mínima do Vite como fallback
+  console.log('📝 Criando configuração mínima do Vite...');
+  const minimalViteConfig = `// vite.config.js
+module.exports = {
+  plugins: [],
+  css: {
+    postcss: {
+      plugins: [],
+    },
+  },
+};`;
+  fs.writeFileSync(path.join(frontendDir, 'vite.config.js.minimal'), minimalViteConfig);
+  
+  try {
+    // Backup da configuração existente
+    if (fs.existsSync(path.join(frontendDir, 'vite.config.js'))) {
+      fs.renameSync(
+        path.join(frontendDir, 'vite.config.js'),
+        path.join(frontendDir, 'vite.config.js.backup')
+      );
+    }
+    
+    // Usar a configuração mínima
+    fs.renameSync(
+      path.join(frontendDir, 'vite.config.js.minimal'),
+      path.join(frontendDir, 'vite.config.js')
+    );
+    
+    // Tentar build novamente com a configuração mínima
+    execSync('npm run build', { cwd: frontendDir, stdio: 'inherit' });
+    console.log('✅ Build do frontend concluído com sucesso usando configuração mínima');
+  } catch (fallbackError) {
+    console.error('❌ Falha no build com configuração mínima:');
+    console.error(fallbackError.message);
+    console.error(fallbackError.stderr?.toString() || 'Nenhum stderr disponível');
+    
+    // Restaurar a configuração original se existir
+    if (fs.existsSync(path.join(frontendDir, 'vite.config.js.backup'))) {
+      fs.renameSync(
+        path.join(frontendDir, 'vite.config.js.backup'),
+        path.join(frontendDir, 'vite.config.js')
+      );
+    }
+    
+    process.exit(1);
+  }
 }
 
 console.log('🎉 Script de build concluído com sucesso!');
