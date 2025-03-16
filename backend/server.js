@@ -23,6 +23,7 @@ const app = express();
 app.use(express.json({ limit: '100mb' }));
 app.use(cookieParser());
 
+
 // Rotas da API
 app.use("/api/auth", authRoutes);
 app.use('/api/products', productRoutes);
