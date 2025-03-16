@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+
 
 // Remova temporariamente o import do plugin React
 // import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   // Use uma verificação condicional para o plugin
-  plugins: [react()], 
+  plugins: [], 
   base: process.env.VITE_BASE_PATH || "/ecommerce-story",
   css: {
     postcss: {
