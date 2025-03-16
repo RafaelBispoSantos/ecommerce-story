@@ -5,7 +5,12 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   // Use uma verificação condicional para o plugin
-  plugins: [], // Temporariamente vazio para o deploy
+  plugins: [], 
+  css: {
+    postcss: {
+      plugins: [],  // Configuração mínima de PostCSS sem autoprefixer
+    },
+  },// Temporariamente vazio para o deploy
   server: {
     proxy: {
       "/api": {
