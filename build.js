@@ -1,7 +1,12 @@
-// build.js - Script de build personalizado
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+// build.js - Script de build personalizado (usando módulos ES)
+import { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Obter __dirname em módulos ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Diretório do frontend
 const frontendDir = path.join(__dirname, 'frontend');
