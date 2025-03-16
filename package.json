@@ -1,17 +1,20 @@
 {
   "name": "ecommerce-story",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "E-commerce application with a custom build process",
+  "main": "backend/server.js",
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
     "build": "node build.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["ecommerce", "nodejs", "backend"],
+  "author": "Seu Nome",
   "type": "module",
   "license": "ISC",
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
     "bcryptjs": "^3.0.2",
@@ -25,6 +28,8 @@
     "stripe": "^17.7.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.0.0"
   }
 }
